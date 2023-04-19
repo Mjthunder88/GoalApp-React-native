@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
-import { StyleSheet, View, FlatList, Button, Image, Text } from "react-native";
+import { StyleSheet, View, FlatList, Button, Image, Text, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 export default function App() {
@@ -101,8 +101,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "85%",
-    height: "85%",
-    padding: 5,
+    height: "60%",
     borderRadius: 10,
   },
   imageContainer: {
