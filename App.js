@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
-import { StyleSheet, View, FlatList, Button } from "react-native";
+import { StyleSheet, View, FlatList, Button, Image, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 export default function App() {
@@ -37,39 +37,51 @@ export default function App() {
 
   return (
     <>
-    <StatusBar style="auto" />
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="black"
-        onPress={startAddGoalHanlder}
-        />
-      {isVisable && (
-        <GoalInput
-        onAddGoal={addGoalHandler}
-          visable={isVisable}
-          onEndGoal={endAddGoalHandler}
+      <StatusBar style="auto" />
+      <View style={styles.appContainer}>
+        <View style={styles.backgroundBtn}>
+          <Button
+            title="Add New Goal"
+            color="black"
+            onPress={startAddGoalHanlder}
           />
-          )}
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={goals}
-          renderItem={(itemData) => {
-            return (
-              <GoalItem
-              itemData={itemData.item.text}
-              onDeleteItem={deleteGoalHandler}
-                id={itemData.item.id}
-              />
+        </View>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require("./assets/freshh-2.png")}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.quoteContainer}>
+          <Text style={styles.quoteTxt}>Fall In Love With The Process</Text>
+        </View>
+
+        {isVisable && (
+          <GoalInput
+            onAddGoal={addGoalHandler}
+            visable={isVisable}
+            onEndGoal={endAddGoalHandler}
+          />
+        )}
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={goals}
+            renderItem={(itemData) => {
+              return (
+                <GoalItem
+                  itemData={itemData.item.text}
+                  onDeleteItem={deleteGoalHandler}
+                  id={itemData.item.id}
+                />
               );
             }}
             keyExtractor={(item, index) => {
               return item.id;
             }}
-            />
+          />
+        </View>
       </View>
-    </View>
-            </>
+    </>
   );
 }
 
@@ -81,6 +93,29 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
+  },
+  backgroundBtn: {
+    backgroundColor: "#637074",
+    marginTop: 20,
+    borderRadius: 10,
+  },
+  image: {
+    width: "85%",
+    height: "85%",
+    padding: 5,
+    borderRadius: 10,
+  },
+  imageContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  quoteContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  quoteTxt: {
+    color: "black",
+    fontSize: 24,
   },
 });
 
